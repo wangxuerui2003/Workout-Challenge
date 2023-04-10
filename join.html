@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script defer src="join.js"></script>
+	<title>Join a New Challenge!</title>
+</head>
+<body>
+	<header>
+		<h1>Workout Challenge</h1>
+		<a href="index.html" class="header-redir-link">Back to Homepage</a>
+	</header>
+	<main>
+		<div class="form-container">
+			<form action="">
+				<div class="form-item">
+					<p>Challenger's Name</p>
+					<input type="text" name="name" placeholder="Challenger's Name" required>
+				</div>
+				<div class="form-item">
+					<p>Challenge Title</p>
+					<input type="text" name="title" placeholder="Challenge title" required>
+				</div>
+				<div class="form-item">
+					<p>Challenge Duration(Days)</p>
+					<input type="number" name="duration" required>
+				</div>
+				<div class="form-item">
+					<p>Category</p>
+					<input type="radio" id="quantity" name="category" value="quantity" required> Quantity
+					<input type="radio" id="single-check" name="category" value="singleCheck" required> Single Check
+				</div>
+				<div class="form-item" id="quantity-div" style="display: none">
+					<p>Challenge Quantity</p>
+					<input type="number" name="quantity" placeholder="Quantity">
+					<input type="number" name="sets" placeholder="Sets">
+					<input type="text" name="unit" placeholder="Unit" list="unitsList" />
+					<datalist id="unitsList">
+						<option value="reps">reps</option>
+						<option value="km">km</option>
+						<option value="mins">mins</option>
+					</datalist>
+				</div>
+				<div class="form-item">
+					<p>Motivational words</p>
+					<input type="text" name="motivational-words" placeholder="Show everyday">
+				</div>
+				<div id="submit-button">
+					<input style="font-size: 1rem;" type="submit" value="Join Challenge!">
+				</div>
+			</form>
+		</div>
+	</main>
+  	<footer>
+    	<p>No Copyright or whatever, feel free to checkout the repo: <a href="#">Github Repo</a></p>
+  	</footer>
+</body>
+</html>
