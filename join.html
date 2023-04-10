@@ -26,7 +26,7 @@
 				</div>
 				<div class="form-item">
 					<p>Challenge Duration(Days)</p>
-					<input type="number" name="duration" required>
+					<input type="number" name="duration" min="0" required>
 				</div>
 				<div class="form-item">
 					<p>Category</p>
@@ -35,8 +35,8 @@
 				</div>
 				<div class="form-item" id="quantity-div" style="display: none">
 					<p>Challenge Quantity</p>
-					<input type="number" name="quantity" placeholder="Quantity">
-					<input type="number" name="sets" placeholder="Sets">
+					<input type="number" name="quantity" min="0" placeholder="Quantity">
+					<input type="number" name="sets" min="0" placeholder="Sets">
 					<input type="text" name="unit" placeholder="Unit" list="unitsList" />
 					<datalist id="unitsList">
 						<option value="reps">reps</option>
