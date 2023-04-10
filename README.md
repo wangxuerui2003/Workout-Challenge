@@ -8,4 +8,4 @@ Doing sets of different movements are just not my taste of working out. I like t
 <br>
 So this dummy app is born, done within one day. It's extremely poor designed and I promise it's gonna look like shit on a phone. No fancy frameworks neither nice documentation. All data are stored on your browser's localstorage.
 <br>
-Anyway, checkout this website on [Workout Challenge]()
+Anyway, checkout this website on [Workout Challenge](https://workout-challenge.vercel.app/)
