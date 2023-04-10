@@ -87,6 +87,9 @@ todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
 					alert(`Congratulations! You have done the challenge:\n${challengeInfo.title}`);
 					playAudio('crowd_cheers.mp3');
 					deleteChallenge(challenge);
+					setTimeout(() => {
+						window.location.reload();
+					}, 20 * 1000);
 				} else {
 					localStorage.setItem('challengesList', JSON.stringify(challengesListJson));
 					displayChallenges();
@@ -104,6 +107,9 @@ todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
 				alert(`Congratulations! You have done the challenge:\n${challengeInfo.title}`);
 				playAudio('crowd_cheers.mp3');
 				deleteChallenge(challenge);
+				setTimeout(() => {
+					window.location.reload();
+				}, 20 * 1000);
 			} else {
 				localStorage.setItem('challengesList', JSON.stringify(challengesListJson));
 				displayChallenges();
