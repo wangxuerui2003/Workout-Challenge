@@ -16,7 +16,8 @@ function insertChallengeTask(task) {
 			markup += `<button class="check-button">Set ${task.currentSets}/${task.sets} | ${task.currentSets * task.quantity} ${task.unit}</button>
 				<button class="giveup-button">Give up</button></div>`;
 		} else {
-			markup += '<button class="check-button">Check for today!</button><button class="giveup-button">Give up</button></div>'	
+			markup += `<button class="check-button">Check for today!</button>
+				<button class="giveup-button">Give up</button></div>`;
 		}
 		ret = 1;
 	}
@@ -58,7 +59,12 @@ function deleteChallenge(challenge) {
 	let challengesLeft = challengesListJson.filter((item) => item.title !== challenge);
 	localStorage.setItem('challengesList', JSON.stringify(challengesLeft));
 	console.log(challengesLeft);
-	window.location.reload();
+	displayChallenges();
+}
+
+async function playAudio(audioFile) {
+	const audio = new Audio('./assets/' + audioFile);
+	audio.play();
 }
 
 todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
@@ -73,14 +79,13 @@ todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
 
 		if (challengeInfo.category == 'quantity') {
 			challengeInfo.currentSets++;
-			e.target.innerHTML = `Set ${challengeInfo.currentSets}/${challengeInfo.sets}
-				| ${challengeInfo.currentSets * challengeInfo.quantity} ${challengeInfo.unit}`;
-
 			if (challengeInfo.currentSets >= challengeInfo.sets) {
 				challengeInfo.currentSets = 0;
+				playAudio('success_done.mp3');
 				checkTodayChallenge(challengeInfo);
 				if (challengeInfo.days == challengeInfo.duration) {
 					alert(`Congratulations! You have done the challenge:\n${challengeInfo.title}`);
+					playAudio('crowd_cheers.mp3');
 					deleteChallenge(challenge);
 				} else {
 					localStorage.setItem('challengesList', JSON.stringify(challengesListJson));
@@ -88,10 +93,16 @@ todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
 				}
 				return ;
 			}
+			playAudio('success1.mp3');
+			e.target.innerHTML = `Set ${challengeInfo.currentSets}/${challengeInfo.sets}
+				| ${challengeInfo.currentSets * challengeInfo.quantity} ${challengeInfo.unit}`;
+
 		} else {
+			playAudio('success-done.mp3');
 			checkTodayChallenge(challengeInfo);
 			if (challengeInfo.days == challengeInfo.duration) {
 				alert(`Congratulations! You have done the challenge:\n${challengeInfo.title}`);
+				playAudio('crowd_cheers.mp3');
 				deleteChallenge(challenge);
 			} else {
 				localStorage.setItem('challengesList', JSON.stringify(challengesListJson));
@@ -105,6 +116,7 @@ todayChallenges.querySelectorAll('.challenge-task').forEach(child => {
 	child.querySelector('.giveup-button').addEventListener('click', (e) => {
 		if (confirm("Are you sure you want to give up this challenge?") == true) {
 			const challenge = e.target.parentNode.querySelector('strong').innerHTML;
+			playAudio('fail.mp3');
 			deleteChallenge(challenge);
 		}
 	})
