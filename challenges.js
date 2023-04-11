@@ -93,6 +93,9 @@ function failChallenge(challenge) {
 	alert(`You have failed the challenge\n${challenge.title}`);
 	playAudio('fail.mp3');
 	deleteChallenge(challenge);
+	setTimeout(() => {
+		window.location.reload();
+	}, 2000);
 }
 
 async function playAudio(audioFile) {
