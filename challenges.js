@@ -31,7 +31,7 @@ function insertChallengeTask(task) {
 	console.log(getTimePassed(task.lastDoneDate));
 	if (getTimePassed(task.lastDoneDate) > 1000 * 24 * 60 * 60) {
 		failChallenge(task);
-		return 1;
+		return -1;
 	}
 
 	if (new Date(task.lastDoneDate).getDate() != new Date().getDate()) {
@@ -59,9 +59,14 @@ function displayChallenges() {
 	} else {
 		removeChildrenNodes(todayChallenges);
 		let todayChallengesLeft = 0;
+		let success = 0;
 		const challengesListJson = JSON.parse(challengesListStr);
 		for (let i = 0; i < challengesListJson.length; i++) {
-			todayChallengesLeft += insertChallengeTask(challengesListJson[i]);
+			success = insertChallengeTask(challengesListJson[i]);
+			if (success == -1) {
+				return;
+			}
+			todayChallengesLeft += success;
 		}
 		if (todayChallengesLeft == 0) {
 			const markup =
